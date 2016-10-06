@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hot reddit post velocity by time of day</title>
+	<script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
+	<style type="text/css">
+		/* No style rules here yet */	
+		html, body{
+			background-color: beige
+		}	
+
+		.hoverable:hover{
+			fill:red;
+		}
+	</style>
+</head>
+<body>
+	<svg id='graph' height=500 width=1000></svg>
+	<p id='hoverText'></p>
+	<script src='script.js'></script>
+	<script src='https://www.reddit.com/hot.json?sort=new&jsonp=processData&limit=300'></script>
+</body>
+</html>

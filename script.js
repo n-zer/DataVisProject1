@@ -5,6 +5,7 @@ var xDataBounds = [0,1440];
 var yDataBounds = [0,0];
 var chartWidth = 1000;
 var chartHeight = 500;
+var chartOffset = [100,100];
 
 function processData(d)
 {
@@ -28,8 +29,8 @@ function processData(d)
 	for(var c = 0;c<data.length;c++){
 		var post = data[c];
 		svg.append('circle')
-			.attr('cx',((post.time.hours*60 + post.time.minutes)/xDataBounds[1])*chartWidth)
-			.attr('cy',chartHeight - (post.upRatio/yDataBounds[1])*chartHeight)
+			.attr('cx',(((post.time.hours*60 + post.time.minutes)/xDataBounds[1])*(chartWidth - chartOffset[0]))+chartOffset[0])
+			.attr('cy',(chartHeight-chartOffset[1]) - (post.upRatio/yDataBounds[1])*(chartHeight-chartOffset[1]))
 			.attr('r', 3)
 			.attr('fill', 'blue')
 			.attr('onmouseover','hoverText('+c+')')
@@ -37,26 +38,26 @@ function processData(d)
 			.attr('onclick',"window.open('https://reddit.com'+data["+c+"].permalink)");
 	}
 	svg.append('line')
-		.attr('x1',((nowTime)/xDataBounds[1])*chartWidth)
-		.attr('x2',(nowTime/xDataBounds[1])*chartWidth)
+		.attr('x1',((nowTime)/xDataBounds[1])*(chartWidth-chartOffset[0])+chartOffset[0])
+		.attr('x2',(nowTime/xDataBounds[1])*(chartWidth-chartOffset[0])+chartOffset[0])
 		.attr('y1',0)
 		.attr('y2', chartHeight)
 		.attr('stroke-width',1)
 		.attr('stroke','grey');
 	svg.append('line')
-		.attr('x1',0)
+		.attr('x1',chartOffset[0])
 		.attr('x2',chartWidth)
 		.attr('y1',chartHeight)
 		.attr('y2', chartHeight)
-		.attr('stroke-width',1)
-		.attr('stroke','grey');
+		.attr('stroke-width',2)
+		.attr('stroke','black');
 	svg.append('line')
-		.attr('x1',0)
-		.attr('x2',0)
+		.attr('x1',chartOffset[0])
+		.attr('x2',chartOffset[0])
 		.attr('y1',0)
 		.attr('y2', chartHeight)
-		.attr('stroke-width',1)
-		.attr('stroke','grey');
+		.attr('stroke-width',2)
+		.attr('stroke','black');
 }
 
 function hoverText(index){

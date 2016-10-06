@@ -46,8 +46,8 @@ function processData(d)
 		.attr('x2',getXCoord(nowTime))
 		.attr('y1',0)
 		.attr('y2', chartHeight-chartOffset[1])
-		.attr('stroke-width',1)
-		.attr('stroke','grey');
+		.attr('stroke-width',.5)
+		.attr('stroke','black');
 	svg.append('line')
 		.attr('x1',chartOffset[0])
 		.attr('x2',chartWidth)

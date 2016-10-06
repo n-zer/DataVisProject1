@@ -100,7 +100,10 @@ function hoverText(index){
 	var minutes = data[index].time.minutes;
 	if(minutes<10)
 		minutes = '0'+minutes;
-	document.querySelector('#hoverText').innerHTML = '<strong>Permalink (click to open)</strong> '+data[index].permalink+'<br><strong>Time posted</strong> '+data[index].time.hours+':'+minutes+'<br><strong>Time alive</strong> <span style="font-size:8pt;"><em>hh:mm</em></span> '+Math.floor(data[index].aliveTime/60)+':'+data[index].aliveTime%60+'<br><strong>Upvotes per second</strong> '+Math.round(data[index].upRatio*1000)/1000;
+	var aliveMinutes = data[index].aliveTime%60;
+	if(aliveMinutes<10)
+		aliveMinutes = '0'+aliveMinutes;
+	document.querySelector('#hoverText').innerHTML = '<strong>Permalink (click to open)</strong> '+data[index].permalink+'<br><strong>Time posted</strong> '+data[index].time.hours+':'+minutes+'<br><strong>Time alive</strong> <span style="font-size:8pt;"><em>hh:mm</em></span> '+Math.floor(data[index].aliveTime/60)+':'+aliveMinutes+'<br><strong>Upvotes per second</strong> '+Math.round(data[index].upRatio*1000)/1000;
 }
 
 function getYCoord(upRatioValue){

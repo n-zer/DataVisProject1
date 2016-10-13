@@ -1,27 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Hot reddit post velocity by time of day</title>
+	<title>Reddit post velocity by time of day</title>
 	<script type="text/javascript" src="https://d3js.org/d3.v3.min.js"></script>
 	<style type="text/css">
-		/* No style rules here yet */	
+		/* No style rules here yet */
 		html, body{
 			background-color: white
+			height:100%;
+			position: relative;
 		}	
-		p,h1{
+		p,h1,h3,.button{
 			font-family:"Tahoma";
 		}
 
 		.hoverable:hover{
 			fill:red;
+			color:red;
+			cursor:pointer;
+		}
+		#explanation{
+			width:500px;
 		}
 	</style>
 </head>
 <body>
-	<h1>Hot reddit post velocity by time of day posted</h1>
-	<svg id='graph' height=500 width=1000></svg>
-	<p id='hoverText'></p>
+	<div id="holder">
+		<h1 id="banner">Reddit post velocity by time of day posted</h1>
+		
+		<svg id='graph' height=500 width=1000></svg>
+		<div id="categorySelector">
+			<span id="hotButton" class="sortButton button hoverable" onclick="switchCollection('hot')">Hot</span>
+			<span id="topButton" class="sortButton button hoverable" onclick="switchCollection('top')">Top</span>
+			<span id="newButton" class="sortButton button hoverable" onclick="switchCollection('new')">New</span>
+		</div>
+		<div id="metricSelector">
+			<span id="velocityButton" class="metricButton button hoverable" onclick="switchMetric('velocity')">Velocity</span>
+			<span id="totalButton" class="metricButton button hoverable" onclick="switchMetric('total')">Total</span>
+		</div>
+		<p id='hoverText'></p>
+		<p id="timeAnchor"></p>
+		<div id="explanation">
+			<h3>What is this graph?</h3>
+			<p>This graph plots reddit posts according to the time of day they were posted and either how many upvotes they've received per second (on average) since being posted or how many total upvotes they've received.
+			Hovering over a point will show its permalink, the time of day it was posted, the number of hours and minutes since it was posted, and its upvotes per second.
+			Clicking on the point will open the post in a new tab. You may choose from three categories of posts: hot (front page), top (most upvotes in the past 24 hours),
+			and new (the most recent 300 posts). This page will refresh its data every thirty seconds, though you may view old data using the arrow keys: left to go backwards
+			in time and right to go forwards.</p>
+		</div>
+	</div>
 	<script src='script.js'></script>
-	<script src='https://www.reddit.com/hot.json?sort=new&jsonp=processData&limit=300'></script>
 </body>
 </html>

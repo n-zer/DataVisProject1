@@ -90,7 +90,7 @@ function draw(data, alt){
 			.attr('x2',xCoord)
 			.attr('y1',getYCoord(post.ups,true))
 			.attr('y2', getYCoord(post.upRatio,false))
-			.attr('stroke-width',.1)
+			.attr('stroke-width',.2)
 			.attr('stroke','blue');
 		svg.append('circle')
 			.attr('cx',xCoord)
